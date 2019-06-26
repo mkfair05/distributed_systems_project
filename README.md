@@ -4,6 +4,8 @@
 * Docker Swarm
 * Redis? --NOSQL database
 * GRPC? (how does this work with docker and redis?) (do i need this?)
+* DO I want to do front end in python? Nodejs? ReactJs?
+* API language?
 
 ## Steps:
 1. do mass insertion of sea level temperature data into redis
