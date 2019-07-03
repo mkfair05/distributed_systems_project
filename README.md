@@ -23,3 +23,5 @@
 * output the csv data onto the html page
 * run the html page in the docker container
 * Do I need separate docker containers to run the html page and the python? Should I have separate ones?
+
+kafka as an asynchronous message passing system?cd re   

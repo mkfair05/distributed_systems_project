@@ -1,0 +1,19 @@
+{
+  "name": "csc462_project",
+  "version": "1.0.0",
+  "description": "## Architecture: * Docker Swarm * Redis? --NOSQL database * GRPC? (how does this work with docker and redis?) (do i need this?) * DO I want to do front end in python(flask? Nodejs? ReactJs? * API language? -python fastapi?",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mkfair05/distributed_systems_project.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mkfair05/distributed_systems_project/issues"
+  },
+  "homepage": "https://github.com/mkfair05/distributed_systems_project#readme"
+}
