@@ -1,31 +1,29 @@
 import React from 'react';
 import './App.css';
 import CSV from './test_data.csv';
-import * as d3 from 'd3';
+import Button from 'react-bootstrap/Button'
+import {CsvToHtmlTable} from 'react-csv-to-table';
 
+const tabledata = '1934-08-23,30.6,13.7,48.9222,-125.5408'
 class Data extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      row_data: [
+      new_row: [
         {
-          date: '1995',
-          temp: '12',
-          salinity:'hello'
-
+          date: '',
+          temp: '',
+          salinity:'',
+          latitude:'',
+          longitude:''
         }
-      ]
-
+      ],
+      csvdata:''
     }
   }
 
-  componentDidMount() {
-    d3.csv(CSV).then(function(CSV){
-      console.log(CS
-    }).catch(function (err) {
-      throw err
-    })
-  }
+
+
 
   renderTableHeader() {
     return (
@@ -35,21 +33,22 @@ class Data extends React.Component {
         <td>Salinity</td>
         <td>Latitude</td>
         <td>Longitude</td>
-
       </tr>
     )
   }
 
   renderTableData() {
-    return this.state.row_data.map((rowdata, index) => {
-      const {date, temp, salinity} = rowdata
+    return this.state.new_row.map((rowdata, index) => {
+      const {date, temp, salinity, latitude, longitude} = rowdata
+      console.log(CSV)
       return (
         <tr>
           <td>{date}</td>
           <td>{temp}</td>
           <td>{salinity}</td>
+          <td>{latitude}</td>
+          <td>{longitude}</td>
         </tr>
-
       )
     })
   }
@@ -66,6 +65,10 @@ class Data extends React.Component {
             {this.renderTableData()}
           </tbody>
         </table>
+        <CsvToHtmlTable
+          data={tabledata}
+          csvDelimiter=','
+        />
       </div>
 
     )
