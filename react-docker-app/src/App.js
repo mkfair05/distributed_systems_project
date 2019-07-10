@@ -1,6 +1,8 @@
 import React from 'react';
 import './App.css';
-import Data from './Data.js'
+import Data from './components/Data.js'
+import Lighthouse from './components/Lighthouse.js'
+import { WebMap, WebScene } from '@esri/react-arcgis';
 
 function App() {
   return (
@@ -15,8 +17,16 @@ function App() {
           </p>
 
         </div>
+
+
       </header>
+      <Lighthouse />
+      <div style={{ width: '75vw', height: '75vh' }}>
+        <WebMap id="6627e1dd5f594160ac60f9dfc411673f" />
+        <WebScene id="f8aa0c25485a40a1ada1e4b600522681" />
+      </div>
       <Data />
+      {/* <Map /> */}
 
     </div>
   );

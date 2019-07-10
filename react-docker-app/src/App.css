@@ -37,7 +37,14 @@
   flex-direction: column;
   background-color: #282c34;
   height: 100vh;
+  padding-top: 20px;
+}
 
+.Dropdown {
+  color: white;
+  display: flex;
+  flex-direction: column;
+  margin: 10px 5px 20px 5px;
 }
 
 @keyframes App-logo-spin {

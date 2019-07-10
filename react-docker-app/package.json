@@ -3,8 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@esri/react-arcgis": "^4.0.0",
+    "bootstrap": "^4.3.1",
     "d3": "^5.9.7",
     "react": "^16.8.6",
+    "react-bootstrap": "^1.0.0-beta.9",
+    "react-csv-to-table": "0.0.2",
     "react-dom": "^16.8.6",
     "react-scripts": "3.0.1"
   },
