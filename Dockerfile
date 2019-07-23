@@ -1,9 +1,17 @@
 
 # base image
-# FROM node:12.2.0-alpine
+FROM node:12.2.0-alpine as build-deps
 
 # # set working directory
-# WORKDIR /app
+WORKDIR /app
+
+COPY package.json yarn.lock ./
+
+RUN yarn
+
+COPY . ./
+
+RUN yarn start
 
 # # add `/app/node_modules/.bin` to $PATH
 # ENV PATH /app/node_modules/.bin:$PATH
