@@ -1,39 +1,31 @@
 import flask
 from flask import request, jsonify
-# from flask_restful import Resource, Api
 from arcgis.gis import GIS   #python wrapper
-
+from flask_cors import CORS
 
 app = flask.Flask(__name__)
-# api = Api(app)
-# app.config["DEBUG"] = True
+CORS(app)
 
-# class ArcGis (Resource):
-#     def get(self):
-#         return {'hello': 'world'}
 gis = GIS("https://arcgis.com", "mkfair05", "2E5nSda4nZUKbCp")
 
+@app.route('/layer', methods=['GET'])
 def getLayer():
-    # gis = GIS()
     search_result = gis.content.search(query="", item_type="Feature *")
     first_item = search_result[0]
     item_id = first_item.id
 
     item = gis.content.get(item_id)
-    print(item)
+    return item_id
 
     
-
+@app.route('/user', methods=['GET'])
 def login():
-    # gis = GIS()
-
     # connect to instance of ArcGIS Online
-    print(gis.properties.user.username)
-    # print(type(gis.content))
+    return gis.properties.user.username
 
 
 
-@app.route('/')
+@app.route('/hello')
 def helloworld():
     return "hello world"
 

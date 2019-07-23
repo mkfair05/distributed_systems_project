@@ -1,20 +1,13 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import MainPage from './MainPage.js'
+
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <div className="Title">
-          <p>
-            CSC 462 Distributed Systems
-          </p>
-          <p>
-            Meghan Fair
-          </p>
-        </div>
-
+        <MainPage/>
       </header>
     </div>
   );
