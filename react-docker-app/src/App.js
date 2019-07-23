@@ -21,8 +21,9 @@ function App() {
 
       </header>
       <Lighthouse />
-      <div style={{ width: '75vw', height: '75vh' }}>
+      <div style={{ width: '75vw', height: '75vh' }} className="Webmaps">
         <WebMap id="6627e1dd5f594160ac60f9dfc411673f" />
+        <div className= "Empty-space"></div>
         <WebScene id="f8aa0c25485a40a1ada1e4b600522681" />
       </div>
       <Data />

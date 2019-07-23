@@ -47,6 +47,15 @@
   margin: 10px 5px 20px 5px;
 }
 
+.Webmaps {
+  display: inline-block;
+  flex-direction: column;
+}
+
+.Empty-space {
+  height: 25px;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

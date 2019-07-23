@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/mkfair05/distributed_systems_project/issues"
   },
-  "homepage": "https://github.com/mkfair05/distributed_systems_project#readme"
+  "homepage": "https://github.com/mkfair05/distributed_systems_project#readme",
+  "dependencies": {
+    "@esri/react-arcgis": "^4.0.0"
+  }
 }

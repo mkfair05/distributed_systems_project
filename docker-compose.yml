@@ -1,19 +1,56 @@
 version: "3"
 services:
-  web:
-    # replace username/repo:tag with your name and image details
-    image: mkfair05/project:part1
-    deploy:
-      replicas: 5
-      resources:
-        limits:
-          cpus: "0.1"
-          memory: 50M
-      restart_policy:
-        condition: on-failure
+
+
+################
+# Server Container
+################
+  server:
+    build: ./api-docker-app
+    expose:
+      - ${APP_SERVER_PORT}
+    environment:
+      API_HOST: ${API_HOST}
+      APP_SERVER_PORT: ${APP_SERVER_PORT}
     ports:
-      - "4000:80"
-    networks:
-      - webnet
-networks:
-  webnet:
+      - ${APP_SERVER_PORT}:${APP_SERVER_PORT}
+    volumes:
+      - ./api-docker-app/src
+    command: npm run dev
+
+################
+# Client Container
+################
+  client:
+    build: ./react-docker-app
+    environment:
+      - REACT_APP_PORT=${REACT_APP_PORT}
+    expose:
+      - ${REACT_APP_PORT}
+    ports: 
+      - ${REACT_APP_PORT}:${REACT_APP_PORT}
+    volumes:
+      - ./react-docker-app/src
+    links:
+      -server
+    command: npm run start
+
+
+
+#   web:
+#     # replace username/repo:tag with your name and image details
+#     image: mkfair05/project:part1
+#     deploy:
+#       replicas: 5
+#       resources:
+#         limits:
+#           cpus: "0.1"
+#           memory: 50M
+#       restart_policy:
+#         condition: on-failure
+#     ports:
+#       - "4000:80"
+#     networks:
+#       - webnet
+# networks:
+#   webnet:
