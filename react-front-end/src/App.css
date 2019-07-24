@@ -23,10 +23,13 @@
   color: #61dafb;
 }
 
-.button {
-  background-color:blue;
+.Blank-space {
   height: 50px;
-  width: 50px;
+}
+
+.Web-map {
+  height: 90vh;
+  width: 90vh;
 }
 
 @keyframes App-logo-spin {
