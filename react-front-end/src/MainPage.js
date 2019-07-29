@@ -8,25 +8,46 @@ export default class MainPage extends React.Component {
         super(props)
         this.state={
             webserver_ip: 'http://localhost:5000',
-            item_id: ""
+            item_id: "",
+            mapIsLoaded: ""
         }
+        this.getMap = this.getMap.bind(this)
+        this.getData = this.getData.bind(this)
     }
 
     componentDidMount() {
         this.getMap()
+        .then((result) => {
+            console.log(result)
+            this.setState({
+                mapIsLoaded: true,
+            })
+
+        })
+        this.getData()
     }
 
     getMap = async() => {
-        await axios.get(this.state.webserver_ip + '/map')
+        await axios.get(this.state.webserver_ip + '/api/map')
         .then(response => {
             console.log(response.data)
             this.setState({item_id: response.data})
+        })
+        .catch(err => console.log('Error: ' + err))
+
+    }
+
+    getData = async() => {
+        axios.get(this.state.webserver_ip + '/api/data')
+        .then(response => {
+            console.log(response.data)
         })
         .catch(err => console.log('Error: ' + err))
     }
 
     // TODO: Get lighthouse data from backend
     render() {
+        const isLoaded = this.state.mapIsLoaded
         return (
             <div className="App">
                 <header className="App-header">
@@ -38,28 +59,31 @@ export default class MainPage extends React.Component {
                         Meghan Fair
                         </p>
                     </div>
-                    <select>
-                        <option href="#/action-1">Amphitrite Point</option>
-                        <option href="#/action-2">Bonilla Island</option>
-                        <option href="#/action-3">Chrome Island</option>
-                        <option href="#/action-3">Departure Bay</option>
-                        <option href="#/action-3">Egg Island</option>
-                        <option href="#/action-3">Entrance Island</option>
-                        <option href="#/action-3">Kains Island</option>
-                        <option href="#/action-3">Langara Island</option>
-                        <option href="#/action-3">McInnes Island</option>
-                        <option href="#/action-3">Nootka Point</option>
-                        <option href="#/action-3">Pine Island</option>
-                        <option href="#/action-3">Race Rocks</option>
+                    <select onChange={this.getData.bind(this)} value='select'>
+                        <option value='select'>Select</option>
+                        <option value='AP'>Amphitrite Point</option>
+                        <option value='BI'>Bonilla Island</option>
+                        <option value='CI'>Chrome Island</option>
+                        <option value='DB'>Departure Bay</option>
+                        <option value='EggI'>Egg Island</option>
+                        <option value='EI'>Entrance Island</option>
+                        <option value='KI'>Kains Island</option>
+                        <option value='LI'>Langara Island</option>
+                        <option value='MI'>McInnes Island</option>
+                        <option value='NP'>Nootka Point</option>
+                        <option value='PI'>Pine Island</option>
+                        <option value='RR'>Race Rocks</option>
                     </select>
 
-                    <div className='Blank-space'></div>
 
-                    <button onClick={this.getMap}>Get Map</button>
+                    <div className='Blank-space'></div>
                     
-            {/* // TODO: Render lighthouse feature layer */}
-                    <div style={{ width: '75vw', height: '75vh' }}>
-                        <WebMap id={this.state.item_id} />    
+                    <div className='Web-map'>
+                        {isLoaded ? (
+                            <WebMap id={this.state.item_id} />    
+                        ):(
+                            <WebMap id='a82c9906c6fc4e44b8eb039583ca40fb'/>
+                        )}
                     </div>
 
                 </header>
