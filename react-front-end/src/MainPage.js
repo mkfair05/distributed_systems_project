@@ -9,28 +9,30 @@ export default class MainPage extends React.Component {
         this.state={
             webserver_ip: 'http://localhost:5000',
             item_id: "",
-            mapIsLoaded: ""
+            mapIsLoaded: "",
+            lighthouse_data: []
         }
         this.getMap = this.getMap.bind(this)
         this.getData = this.getData.bind(this)
+        this.getLighthouse = this.getLighthouse.bind(this)
+
     }
 
     componentDidMount() {
         this.getMap()
         .then((result) => {
-            console.log(result)
             this.setState({
                 mapIsLoaded: true,
             })
 
         })
         this.getData()
+        this.getLighthouse()
     }
 
     getMap = async() => {
         await axios.get(this.state.webserver_ip + '/api/map')
         .then(response => {
-            console.log(response.data)
             this.setState({item_id: response.data})
         })
         .catch(err => console.log('Error: ' + err))
@@ -43,6 +45,40 @@ export default class MainPage extends React.Component {
             console.log(response.data)
         })
         .catch(err => console.log('Error: ' + err))
+    }
+
+    getLighthouse = async() => {
+        axios.get(this.state.webserver_ip + '/api/lighthouse')
+        .then(response => {
+            console.log(response.data)
+            this.setState({lighthouse_data: response.data})
+        })
+        .catch(err => console.log('Error: ' + err))
+    }
+
+    getTitle = () => {
+        var title = this.state.lighthouse_data[0]
+        // return title.map((key, index)=>{
+            // return <th key={key}>{key}</th>
+        // })
+    }
+
+    getKeys = () => {
+        return this.state.lighthouse_data[1]
+    }
+
+    renderLighthouseData = () => {
+        return (
+            <div>
+                <table>
+                    <thead>
+                        <tr>{this.getTitle()}</tr>
+                    </thead>
+
+                </table>
+                {this.getKeys()}
+            </div>
+        )
     }
 
     // TODO: Get lighthouse data from backend
@@ -75,6 +111,7 @@ export default class MainPage extends React.Component {
                         <option value='RR'>Race Rocks</option>
                     </select>
 
+                   <this.renderLighthouseData/>
 
                     <div className='Blank-space'></div>
                     
